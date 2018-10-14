@@ -240,13 +240,7 @@ class App(QWidget):
         if d >= 0 and d < 256:
             self.ascii_convert.setText(chr(d))
         self.hex_convert.setText(hex(d).upper()[2:])
-        bin_list = bin(d)[2:]
-        diff = (1 - ((len(bin_list) / 4) - int((len(bin_list) / 4))))
-        if not diff.is_integer():
-            diff = int(diff * 4)
-            bin_list = "0" * diff + bin_list 
-        bin_list = " ".join([bin_list[i:i+4] for i in range (0, len(bin_list), 4)])
-        self.binary_convert.setText(bin_list)  
+        self.binary_convert.setText(self.convert_to_binary(d))
         self.octal_convert.setText(oct(d)[2:]) 
 
     def convert_from_ascii(self):
